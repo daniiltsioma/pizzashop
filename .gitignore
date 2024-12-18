@@ -1,0 +1,72 @@
+# Django-specific
+*.log
+*.pot
+*.pyc
+__pycache__/
+media/
+staticfiles/
+*.sqlite3
+
+# Ignore environment files
+.env
+
+# Virtual environment
+venv/
+.env/
+
+# IDE files
+.idea/
+.vscode/
+
+# Migrations
+**/migrations/*
+!**/migrations/__init__.py
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.tox/
+.nox/
+.cache/
+pytest_cache/
+
+# Django specific database files
+db.sqlite3
+db.sqlite3-journal
+
+# Static files and uploads
+static/
+media/
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# Docker
+*.env.docker
+**/Dockerfile
+**/docker-compose.yml
+
+# Ignore other development files
+*.tmp
+*.log
+*.yaml
+*.yml
