@@ -1,8 +1,8 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import Pizza, Order, OrderItem
-from .serializers import PizzaSerializer, OrderSerializer, OrderItemSerializer
+from .models import Pizza, Order, Topping
+from .serializers import PizzaSerializer, OrderSerializer, ToppingSerializer
 
 class PizzaViewSet(viewsets.ModelViewSet):
     queryset = Pizza.objects.all()
@@ -11,6 +11,20 @@ class PizzaViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+class ToppingViewSet(viewsets.ModelViewSet):
+    queryset = Topping.objects.all()
+    serializer_class = ToppingSerializer
+
+@api_view(['DELETE'])
+def delete_pizza(request, pizza_id):
+    try:
+        pizza = Pizza.objects.get(id=pizza_id)
+        pizza.delete()
+        return Response({'message': 'Pizza deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+    except Pizza.DoesNotExist:
+        return Response({'error': 'Pizza not found.'}, status=status.HTTP_404_NOT_FOUND)
+    
 
 @api_view(['POST'])
 def add_order(request):

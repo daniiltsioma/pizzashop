@@ -1,6 +1,14 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 
+
+class Topping(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
 class Pizza(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -9,6 +17,9 @@ class Pizza(models.Model):
     def __str__(self):
         return self.name
 
+class PizzaTopping(models.Model):
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE, related_name='toppings')
+    topping = models.ForeignKey(Topping, on_delete=models.CASCADE)
 
 class Order(models.Model):
     class OrderStatus(models.TextChoices):
