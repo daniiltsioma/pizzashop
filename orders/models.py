@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from django.db import models
+from store.models import Store
 
 
 class Topping(models.Model):
@@ -31,6 +32,7 @@ class Order(models.Model):
     customer_email = models.EmailField()
     order_date = models.DateTimeField(auto_now_add=True)
     order_status = models.CharField(max_length=1, choices=OrderStatus.choices, default=OrderStatus.RECEIVED)
+    store = models.ForeignKey(Store, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Order {self.id} - {self.customer_name}"
