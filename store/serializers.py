@@ -4,7 +4,7 @@ from .models import Employee, Store
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
-        fields = '__all__'
+        fields = ('id', 'name', 'address')
 
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
