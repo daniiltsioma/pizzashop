@@ -1,7 +1,6 @@
-from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from orders.views import PizzaViewSet, OrderViewSet, ToppingViewSet, add_order, delete_order, delete_pizza, edit_order_status
+from orders.views import PizzaViewSet, OrderViewSet, ToppingViewSet, edit_order_status
 from store.views import EmployeeViewSet, StoreOrdersListView, StoreViewSet
 
 router = routers.DefaultRouter()
