@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Pizza, Order, OrderItem
+from django.utils import timezone
 
 class PizzaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,6 +17,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
         model = OrderItem
         fields = ('pizza', 'pizza_id', 'quantity')
 
+
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(many=True, read_only=True)
     items_data = serializers.ListField(
@@ -25,7 +27,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ('id', 'customer_name', 'customer_email', 'items', 'items_data')
+        fields = ('id', 'customer_name', 'customer_email', 'items', 'items_data', 'created_at', 'completed_at')
 
     def create(self, validated_data):
         items_data = validated_data.pop('items_data')

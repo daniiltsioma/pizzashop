@@ -13,3 +13,5 @@ class OrderItem(models.Model):
 class Order(models.Model):
     customer_name = models.CharField(max_length=50)
     customer_email = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(null=True)
